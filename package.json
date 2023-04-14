@@ -1,0 +1,31 @@
+{
+  "name": "binnacle-bash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "bin": "app.js",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlos-Who/binnacle-bash.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Carlos-Who/binnacle-bash/issues"
+  },
+  "homepage": "https://github.com/Carlos-Who/binnacle-bash#readme",
+  "dependencies": {
+    "ascii-art": "^2.8.5",
+    "boxen": "^7.0.2",
+    "chalk": "^5.2.0",
+    "figlet": "^1.6.0",
+    "inquirer": "^9.1.5",
+    "prompts": "^2.4.2",
+    "uuidv4": "^6.2.13"
+  }
+}
