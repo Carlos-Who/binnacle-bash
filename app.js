@@ -7,54 +7,63 @@ import alert from './helpers/alerts/alerts.js'
 
 import { Task } from "./models/task.js";
 import {Tasks} from "./models/tasks.js";
+import {setTaskDescription, setTaskTitle} from "./helpers/messages/tasks/task.message.js";
 
 console.clear();
 
+
+
+
 const main = async () => {
+
     let selectedOption = 0;
-    const tareas = new Tasks();
+    const tasks = new Tasks();
+
+
 
     await displayHeader();
-    console.log('');
-    let count = 0;
-
 
     do {
-        console.clear();
-        await displayHeader();
-        console.log('');
 
+        await displayHeader();
         selectedOption = await displayMenu();
 
-        // console.log('Opción seleccionada: ', selectedOption);
-
-
         switch (selectedOption) {
+
             case 1:
-                console.clear();
                 await displayHeader();
-                console.log('');
 
                 let newTaskOption = 0;
 
                 do {
                     newTaskOption = await alert.confirmCreateNewTask();
-                    // console.log(newTaskOption);
+
                     if(newTaskOption === 1) {
-                        console.log("Creando nueva tarea");
-                        await alert.standardPause();
+
+                        await displayHeader();
+                        console.log("Agrega un titulo para tu nueva tarea.");
+                        const title = await setTaskTitle("Titulo:");
+                        const description = await setTaskDescription();
+                        tasks.createTask(title, description);
+                        // await alert.standardPause();
+
                     }
+                    
                 } while (newTaskOption !== 0);
 
-                // console.log("Salimos al menu");
-                //
-                //
-                // await alert.standardPause();
 
             break;
 
             case 2:
-                console.log(tareas._taskList);
+                console.clear();
+                console.log(tasks._taskList);
+                console.log("-----------------------------------------------------------------------");
+                console.log(tasks.taskListArray);
+                await alert.standardPause();
+            break;
+
+            case 3:
+
             break;
         }
 
@@ -63,8 +72,11 @@ const main = async () => {
 
     console.log("Salio de la aplicación");
 
-
 }
 
 
 main();
+
+
+
+

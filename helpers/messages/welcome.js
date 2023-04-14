@@ -5,7 +5,7 @@ import figlet from 'figlet'; // ASCII Text art...
 // import Ghost from "figlet/importable-fonts/Ghost.js";
 
  function displayHeader() {
-
+     console.clear();
     return new Promise((resolve, reject) => {
         figlet("Binnacle Bash!", {
             font: 'Standard',
@@ -19,7 +19,7 @@ import figlet from 'figlet'; // ASCII Text art...
                 return;
             }
             console.log(chalk.green(data));
-
+            console.log('');
             resolve();
         });
     });
