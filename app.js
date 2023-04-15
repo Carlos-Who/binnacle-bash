@@ -6,8 +6,9 @@ import { displayHeader } from './helpers/messages/welcome.js'
 import alert from './helpers/alerts/alerts.js'
 
 import { Task } from "./models/task.js";
-import {Tasks} from "./models/tasks.js";
-import {setTaskDescription, setTaskTitle} from "./helpers/messages/tasks/task.message.js";
+import {Tasks } from "./models/tasks.js";
+import { setTaskDescription, setTaskTitle } from "./helpers/messages/tasks/task.message.js";
+import { consultData, saveData} from "./helpers/actions/data-actions.js";
 
 console.clear();
 
@@ -19,7 +20,12 @@ const main = async () => {
     let selectedOption = 0;
     const tasks = new Tasks();
 
+    const dataDB = consultData();
 
+    if(dataDB) {
+        tasks.loadTaskFromArray(dataDB);
+    }
+    await alert.standardPause();
 
     await displayHeader();
 
@@ -55,11 +61,7 @@ const main = async () => {
             break;
 
             case 2:
-                console.clear();
-                console.log(tasks._taskList);
-                console.log("-----------------------------------------------------------------------");
-                console.log(tasks.taskListArray);
-                await alert.standardPause();
+                tasks.displayAllTasks();
             break;
 
             case 3:
@@ -67,7 +69,8 @@ const main = async () => {
             break;
         }
 
-
+        saveData(tasks.taskListArray);
+        await alert.standardPause();
     } while (selectedOption !== 0);
 
     console.log("Salio de la aplicación");
